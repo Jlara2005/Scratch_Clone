@@ -1,12 +1,13 @@
 //import modules
 const express = require('express');
 const app = express();
+const path = require('path');
 //part 2, configure expressjs application
 app.set('view engine', 'ejs');
 app.use(bodyparser.urlencoded({
     extended: true
 }))
-
+app.use(express.static(path.join(__dirname, 'public')));
 
 //part 3 set up endpoints
 app.get('/', (req, res) => {
