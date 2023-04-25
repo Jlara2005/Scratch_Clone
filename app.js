@@ -10,8 +10,8 @@ app.use(bodyparser.urlencoded({
 
 //part 3 set up endpoints
 app.get('/', (req, res) => {
-    if (req.query) console.log(re.query); //get query params
-    if (req.body) console.log(re.body); //get body data
+    if (req.query) console.log(req.query); //get query params
+    if (req.body) console.log(req.body); //get body data
     res.send('hello world')
 })
 
@@ -21,6 +21,6 @@ app.listen(300, (error) => {
     if (error) {
         console.log(error);
     } else {
-        console.log('listening on server');
+        console.log('listening on server port 300');
     }
 })
