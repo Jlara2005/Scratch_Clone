@@ -4,6 +4,7 @@ const bodyparser = require('body-parser')
 const app = express();
 const path = require('path');
 var fs = require('fs');
+// the four javascript libararies below is not being used right now. in the future, it will allow users to import many files to the server/webpage.
 import Uppy from '@uppy/core';
 import DragDrop from '@uppy/drag-drop';
 import '@uppy/core/dist/style.min.css';
@@ -13,6 +14,8 @@ app.set('view engine', 'ejs');
 app.use(bodyparser.urlencoded({
     extended: true
 }))
+
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 
