@@ -1,5 +1,6 @@
 //import modules
 const express = require('express');
+const bodyparser = require('body-parser')
 const app = express();
 const path = require('path');
 var fs = require('fs');
@@ -14,17 +15,22 @@ app.use(bodyparser.urlencoded({
 }))
 app.use(express.static(path.join(__dirname, 'public')));
 
-//fs.readFile('Demo.txt', 'utf8', function(err, data){
+
+/*
+an example read file functions for future use. the file may contain data about the users and their project.
+fs.readFile('Demo.txt', 'utf8', function(err, data){
       
-    // Display the file content
-    //console.log(data);
-//});
+     Display the file content
+    console.log(data);
+}); 
+*/
+
 
 //part 3 set up endpoints
 app.get('/', (req, res) => {
-    if (req.query) console.log(re.query); //get query params
-    if (req.body) console.log(re.body); //get body data
-    res.send('hello world')
+    if (req.query) console.log(req.query); //get query params
+    if (req.body) console.log(req.body); //get body data
+    res.render('homepage.ejs')
 })
 
 
@@ -33,6 +39,6 @@ app.listen(300, (error) => {
     if (error) {
         console.log(error);
     } else {
-        console.log('listening on server');
+        console.log('listening on server port 300');
     }
 })
