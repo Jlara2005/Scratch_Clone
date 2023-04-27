@@ -12,7 +12,7 @@ other option can be forking this branch and use github desktop to copy the files
 
 Use **Npm i** in your CMD to install all the packages required to use scratch clone
 
--step 3 running the server.
+- step 3 running the server.
 
 Use **node app.js** in your CMD to start up the server. 
 Now you can go to localhost with the port number display on CMD.
