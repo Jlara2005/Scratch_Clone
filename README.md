@@ -15,7 +15,7 @@ Use **Npm i** in your CMD to install all the packages required to use scratch cl
 -step 3 running the server.
 
 Use **node app.js** in your CMD to start up the server. 
-Now you can either go to localhost with the port number display on CMD.
+Now you can go to localhost with the port number display on CMD.
 
 
  
