@@ -36,6 +36,9 @@ app.get('/', (req, res) => {
     res.render('homepage.ejs')
 })
 
+app.get('/gamePage', (req, res) => {
+    res.render('gamepage.ejs')
+})
 
 //start http listen server
 app.listen(300, (error) => {
