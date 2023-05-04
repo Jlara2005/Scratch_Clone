@@ -55,7 +55,7 @@ app.get('/gamePage', (req, res) => {
 
 app.get('/aboutPage',(req,res) =>{
     res.render('aboutpage.ejs')
-
+})
 
 // the two endpoint below is all play a part in creating or logging in.
 app.get('/login', function(req,res) {
