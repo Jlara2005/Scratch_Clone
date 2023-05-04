@@ -1,4 +1,5 @@
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,10 +8,11 @@
 </head>
 <!-- css below for the page. may turn it into a css file if mutiple page required to have this css -->
 <style>
-    html{
+    html {
         background-color: lightblue;
     }
-    .backgroundBox{
+
+    .backgroundBox {
         min-width: 510px;
         min-height: 500px;
         border: 8px;
@@ -19,12 +21,14 @@
         border-color: black;
         margin-top: 50px;
     }
-    .backgroundText{
+
+    .backgroundText {
         text-align: center;
-        
-      background-color: rgb(87, 106, 187);
+
+        background-color: rgb(87, 106, 187);
     }
-    .gameLink{
+
+    .gameLink {
         max-width: 50px;
         max-height: 50px;
         background-color: red;
@@ -33,28 +37,56 @@
         border: 4px;
         border-style: groove;
         border-color: aqua;
-        
+
     }
-    .notes{
+
+    .loginLink {
+        max-width: 45px;
+        max-height: 45px;
+        background-color: red;
+        margin-top: 0px;
+        margin-left: 0px;
+        border: 4px;
+        border-style: groove;
+        border-color: aqua;
+
+    }
+
+    .accountLink {
+        max-width: 45px;
+        max-height: 45px;
+        background-color: red;
+        margin-top: 0px;
+        margin-left: 0px;
+        border: 4px;
+        border-style: groove;
+        border-color: aqua;
+
+    }
+
+    .notes {
         max-width: 390px;
         max-height: 600px;
         background-color: cadetblue;
         margin-top: 510px;
     }
-    .notes h1{
+
+    .notes h1 {
         border: 2px;
         border-style: dashed;
         border-color: rgb(20, 12, 95);
     }
-    .about{
+
+    .about {
         max-width: 390px;
         max-height: 600px;
         background-color: darkcyan;
         margin-top: -60px;
         margin-left: 1520px;
     }
-    .about h1{
-        border:2px;
+
+    .about h1 {
+        border: 2px;
         border-style: dashed;
         border-color: rgb(13, 65, 66);
     }
@@ -69,32 +101,43 @@
         margin-top: -23px;
     }
 </style>
+
 <body>
     <div class="backgroundBox">
         <div class="backgroundText">
             <h2>Welcome to Scratch Clone</h2>
-          
+
         </div>
     </div>
     <!-- A link that goes to the game page below. -->
     <div class="gameLink">
         <p><a href="/gamePage"> Game Page</a></p>
     </div>
+
+    <div class="loginLink">
+        <p><a href="/login"> login Page </a></p>
+    </div>
+
+    <div class="accountLink">
+        <p><a href="/accountPage"> account Page </a></p>
+    </div>
+
     <!-- this will teach the user any tips and trick about scratch clone -->
     <div class="notes" onclick="window.location.href='//github.com/Jlara2005/Scratch_Clone/wiki/Notes' ">
         <h1>Notes about Scratch Clone</h1>
     </div>
     <!-- This will talk about the project and the people behind it -->
-    <div class="about"  onclick="window.location.href='//github.com/Jlara2005/Scratch_Clone/wiki' ">
+    <div class="about" onclick="window.location.href='//github.com/Jlara2005/Scratch_Clone/wiki' ">
         <h1>About Scratch Clone</h1>
     </div>
     <div class="aboutpage2" >
         <h5 ><a href="/aboutPage"> Creators of Scratch Clone</a> </h5>
     </div>
 </body>
+
 </html>
 
-  <!--
+<!--
     A image that soon going to be added later.
     <img src="scratch_dora.jpg" alt=""> 
 -->
