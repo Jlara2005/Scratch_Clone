@@ -1,0 +1,132 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Page</title>
+</head>
+<style>
+    div{
+        max-width: fit-content;
+        max-height: fit-content;
+    }
+    body{
+        background-color:lightslategrey ;
+    }
+    .aboutText{
+        background-color:lightsteelblue ;
+        color: crimson;
+        max-width: 1000px;
+        max-height: fit-content;
+        position: absolute;
+        text-align: center;
+        margin-top: 45px;
+        margin-left: 18%;
+        border: 2px;
+        border-style: dotted ;
+        border-color: black;
+       
+        
+    }
+    .author1{
+        background-color: rgb(125, 10, 192);
+        position:absolute;
+        margin-top: -18px;
+        max-width: fit-content;
+        margin-left: 18%;
+        max-height: fit-content;
+        color: white;
+        border: 2px;
+        border-style: ridge;
+        border-color: black;
+        
+    }
+    .author2{
+        background-color:orange ;
+        max-width: fit-content;
+        position: absolute;
+        border: 2px;
+        border-style: ridge;
+        border-color: black;
+        margin-top: -17px;
+        margin-left: 449px;
+    }
+    .author3{
+        background-color:lightblue ;
+       position: absolute;
+        max-width: fit-content;
+        margin-top: -17px;
+        max-height: fit-content;
+        margin-left: 543px;
+        border: 2px;
+        border-style: ridge;
+        border-color: black;
+        
+        
+    }
+    .author4{
+        background-color: crimson;
+        max-width: fit-content;
+        position: absolute;
+        border: 2px;
+        border-style: ridge;
+        border-color: black;
+        margin-top: -17px;
+        margin-left: 680px;
+    }
+    .GoBack{
+        max-width: fit-content;
+        max-height: fit-content;
+        background-color: wheat;
+        margin-top: -10px;
+        margin-left: -10px;
+    }
+</style>
+<body>
+    <div class="aboutText" id="About">
+         <p>
+            This is Scratch Clone! Scratch clone will teach you the basics of programming with blocks, while making it fun.
+         </p>
+
+    </div>
+    <div class="author1" id="1" onclick="about(this)">
+        <h3>Jacob Smith</h3>
+        
+    </div>
+    <div class="author2"id='2' onclick="about(this)">
+        <h3>Jason Lara</h3>
+    </div>
+    <div class="author3" id="3"onclick='about(this)'>
+        <h3 >Shane Winpigler</h3>
+    </div>
+    <div class="author4" id="4" onclick="about(this)">
+        <h3>Logan Cruz</h3>
+    </div>
+    <div class="goBack" id="5" onclick="about(this)">
+    <h5>Go Back</h5>
+    </div>
+    <script>
+        function about(element) {
+            console.log(element)
+            if (element.id =='1') {
+                document.getElementById('About').innerHTML = 'This is Jacob Smith'
+            }
+            if (element.id=='2') {
+                document.getElementById('About').innerHTML = 'This is Jason Lara'
+            }
+            if (element.id =='3') {
+                document.getElementById('About').innerHTML = 'This is Shane Winpigler'
+            }
+            if (element.id=='4') {
+                document.getElementById('About').style.fontFamily='wingdinks'
+                document.getElementById('About').innerHTML = 'Hello. My name is Logan. I am the first Junior who worked for this project. I did most of the HTML and CSS for the page, and a little bit of EJS along the way. '
+            }
+            if (element.id=='5') {
+                window.history.go(-1)
+            }
+        }
+
+    </script>
+   
+</body>
+</html>
