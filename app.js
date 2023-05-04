@@ -47,10 +47,29 @@ fs.readFile('Demo.txt', 'utf8', function(err, data){
 //part 3 set up endpoints
 app.get('/', (req, res) => {
     res.render('homepage.ejs')
-})
+});
 
 app.get('/gamePage', (req, res) => {
     res.render('gamepage.ejs')
+});
+
+app.get('/loginpage', (req, res) => {
+    res.render('loginpage.ejs')
+});
+
+app.get('/accountPage', function(req,res) {
+    // if the user already log in than it will just send them back to the home page. soon i will add it to send to the logout page
+    if (req.session.user) {
+        res.render('accountPage.ejs', {
+            login:true,
+            username: req.session.user
+        })
+    } else {
+        res.render('accountPage.ejs', {
+            login:false,
+            username: " "
+        })
+    }
 })
 
 app.get('/aboutPage',(req,res) =>{
@@ -131,6 +150,57 @@ app.post('/login', function(req,res) {
         })
     }
 })
+
+app.post('/accountPage', function(req,res) {
+    // the varible below is the inputed username and password.
+    let username = req.body.username
+    let password = req.body.password
+
+    //this check if the user want to create an account or login to the account.
+    if (req.body.choice == "login") {
+        //this generate session data with any given data
+        req.session.regenerate(function (error) {
+            if (error) throw error;
+            // look for the user in the databased.
+              database.get(`SELECT * FROM Users Where username = ?`, [username], function (error, results) {
+                if (error) throw error;
+                if (results) {
+                    // if the user does exist than it user password and input password is now being compare
+                  bcrypt.compare(password, results.password, (error, isMatch) => {
+                    // if it match than they successfully login.
+                    if (isMatch) {
+                      if (error) throw error;
+                      req.session.user = username;
+                      res.redirect('/');
+                    } else res.redirect('/login');
+                  })
+                } else res.redirect('/login');
+              })
+          })
+
+    } else {
+        // this is for when the user want to create an account
+        req.session.regenerate(function (error) {
+            if (error) throw error;
+            // check if the account already exist
+            database.get(`SELECT * FROM Users Where username = ?`, [username], (error, results) => { 
+                if (error) throw error;
+                if (results) res.redirect('/login');
+                // hash will encypt the password 
+                bcrypt.hash(password, 10, function (error, secretPassword) {
+                    if (error) throw error;
+                    // add the new username and password to the databased.
+                    database.get('INSERT INTO Users (username, password) VALUES (?,?)', [username,secretPassword], function(error) {
+                        if (error) throw error;
+                        req.session.user = username
+                        res.redirect('/')
+                    })
+                })
+            })
+        })
+    }
+})
+
 //start http listen server
 app.listen(300, (error) => {
     if (error) {
@@ -138,4 +208,4 @@ app.listen(300, (error) => {
     } else {
         console.log('listening on server port 300');
     }
-})
+});

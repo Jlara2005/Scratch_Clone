@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Login</title>
 </head>
 <style>
     html {
@@ -67,30 +67,28 @@
         border-color: rgb(13, 65, 66);
     }
 </style>
+</style>
 
 <body>
     <div class="backgroundBox">
         <div class="backgroundText">
-            <h2>Welcome to Scratch Clone</h2>
-
-            <body>
-                <form action="/login" method="POST" id="form">
-                    <input type="text" name="username" id="" placeholder="username" required> <br>
-                    <input type="text" name="password" id="" placeholder="password" required><br>
-                    <button type="submit" value="login" name="choice"> Login </button> <button type="submit"
-                        value="create" name="choice"> Create </button>
-                </form>
-            </body>
+            <h2>Account page</h2>
+            <div>
+                <script>
+                    var user = <% -JSON.stringify(login) %>
+                </script>
+                <div class="usernameBox">
+                    <% if(login) { %>
+                        <p> <%= username %> </p>
+                    <% } %>
+                </div>
+            </div>
         </div>
     </div>
+    <!-- A link that goes to the game page below. -->
+    <div class="gameLink">
+        <p><a href="/gamePage"> Should be link </a></p>
+    </div>
 </body>
-<script>
-    var user = <% -JSON.stringify(login) %>
-    if (user) {
-        let forms = document.getElementById("form");
-        forms.innerHTML = "<button type='submit' value='login' name='choice'> Do you want to log out </button>"
-        forms.action = "/logout"
-    }
-</script>
 
 </html>
