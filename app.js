@@ -57,10 +57,25 @@ app.get('/gamePage', (req, res) => {
 app.get('/login', function(req,res) {
     // if the user already log in than it will just send them back to the home page. soon i will add it to send to the logout page
     if (req.session.user) {
-        res.redirect('/')
+        res.render('login.ejs', {
+            login:true
+        })
     } else {
-        res.render('login.ejs')
+        res.render('login.ejs', {
+            login:false
+        })
     }
+})
+
+app.post('/logout', function(req,res) {
+    req.session.user = null;
+  req.session.save(function (error) {
+    if (error) throw error;
+    req.session.regenerate(function (error) {
+      if (error) throw error;
+      res.redirect('/login');
+    })
+  })
 })
 
 app.post('/login', function(req,res) {
