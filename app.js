@@ -53,6 +53,10 @@ app.get('/gamePage', (req, res) => {
     res.render('gamepage.ejs')
 })
 
+app.get('/aboutPage',(req,res) =>{
+    res.render('aboutpage.ejs')
+
+
 // the two endpoint below is all play a part in creating or logging in.
 app.get('/login', function(req,res) {
     // if the user already log in than it will just send them back to the home page. soon i will add it to send to the logout page
