@@ -7,6 +7,7 @@ const bcrypt = require('bcrypt')
 const sqlite3 = require('sqlite3').verbose();
 const session = require('express-session')
 var fs = require('fs');
+var parser = require('scratch-parser')
 
 // the four javascript libararies below is not being used right now. in the future, it will allow users to import many files to the server/webpage.
 /*import Uppy from '@uppy/core';
@@ -149,6 +150,7 @@ app.post('/login', function(req,res) {
             })
         })
     }
+
 })
 
 app.post('/accountPage', function(req,res) {
