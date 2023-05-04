@@ -85,7 +85,8 @@
     </div>
 </body>
 <script>
-    var user = <% -JSON.stringify(login) %>
+    var user = <%- JSON.stringify(login) %>
+    console.log(user);
     if (user) {
         let forms = document.getElementById("form");
         forms.innerHTML = "<button type='submit' value='login' name='choice'> Do you want to log out </button>"
