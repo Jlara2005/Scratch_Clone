@@ -136,8 +136,9 @@ app.post('/login', function(req,res) {
             // check if the account already exist
             database.get(`SELECT * FROM Users Where username = ?`, [username], (error, results) => { 
                 if (error) throw error;
-                if (results) res.redirect('/login');
-                // hash will encypt the password 
+                if (results) 
+                {res.redirect('/login')} else 
+                {// hash will encypt the password 
                 bcrypt.hash(password, 10, function (error, secretPassword) {
                     if (error) throw error;
                     // add the new username and password to the databased.
@@ -146,7 +147,7 @@ app.post('/login', function(req,res) {
                         req.session.user = username
                         res.redirect('/')
                     })
-                })
+                })}
             })
         })
     }
