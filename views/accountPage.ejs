@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<style>
+    html {
+        background-color: lightblue;
+    }
+
+    .backgroundBox {
+        min-width: 510px;
+        min-height: 500px;
+        border: 8px;
+        background-color: darkblue;
+        border-style: ridge;
+        border-color: black;
+        margin-top: 50px;
+    }
+
+    .backgroundText {
+        text-align: center;
+
+        background-color: rgb(87, 106, 187);
+    }
+
+    .gameLink {
+        max-width: 110px;
+        max-height: 50px;
+        background-color: rgb(0, 140, 255);
+        margin-top: -570px;
+        margin-left: 600px;
+        border: 4px;
+        border-style: groove;
+        border-color: aqua;
+
+    }
+
+    .notes {
+        max-width: 390px;
+        max-height: 600px;
+        background-color: cadetblue;
+        margin-top: 510px;
+    }
+
+    .notes h1 {
+        border: 2px;
+        border-style: dashed;
+        border-color: rgb(20, 12, 95);
+    }
+
+    .about {
+        max-width: 390px;
+        max-height: 600px;
+        background-color: darkcyan;
+        margin-top: -60px;
+        margin-left: 1520px;
+    }
+
+    .about h1 {
+        border: 2px;
+        border-style: dashed;
+        border-color: rgb(13, 65, 66);
+    }
+</style>
+</style>
+
+<body>
+    <div class="backgroundBox">
+        <div class="backgroundText">
+            <h2>Account page</h2>
+            <div>
+                <script>
+                    var user = <% -JSON.stringify(login) %>
+                </script>
+                <div class="usernameBox">
+                    <% if(login) { %>
+                        <p> <%= username %> </p>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- A link that goes to the game page below. -->
+    <div class="gameLink">
+        <p><a href="/gamePage"> Should be link </a></p>
+    </div>
+</body>
+
+</html>

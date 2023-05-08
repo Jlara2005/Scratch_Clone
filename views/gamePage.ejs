@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Page</title>
+</head>
+<!-- The css for the page below. -->
+<style>
+    #GC {
+        width: 500px;
+        border: 1px solid black;
+        overflow: auto hidden;
+        position: relative;
+        left: 39%;
+        display: flex;
+    }
+
+    #GB {
+        width: 300px;
+        background-color: black;
+        float: left;
+    }
+
+    .PT {
+        font-size: 20px;
+
+    }
+
+    .button {
+        position: relative;
+        left: 50%;
+    }
+</style>
+
+<body>
+    <!-- the button will send you back to the home page -->
+    <div>
+        <button class="button" onclick="window.location.href='/' ">Home Page</button>
+        <div id="GC">
+            <!-- it will display the game. as in now, it use a textarea to scale and act like the canvas border. it soon will be replace -->
+            <div class="GB">
+                <textarea></textarea>
+            </div>
+            <!-- it display the information below -->
+            <div class="CB">
+                <h1 class="PT">Project Name</h1>
+                <h2 class="PT">Creator Name</h2>
+                <p class="PT">Description</p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
