@@ -6,6 +6,7 @@ const path = require('path');
 const bcrypt = require('bcrypt')
 const sqlite3 = require('sqlite3').verbose();
 const session = require('express-session')
+const Blockly = require('blockly')
 var fs = require('fs');
 
 // the four javascript libararies below is not being used right now. in the future, it will allow users to import many files to the server/webpage.
@@ -55,6 +56,10 @@ app.get('/gamePage', (req, res) => {
 
 app.get('/loginpage', (req, res) => {
     res.render('loginpage.ejs')
+});
+
+app.get('/create',(req,res) => {
+    res.render('createGame.ejs')
 });
 
 app.get('/accountPage', function(req,res) {
