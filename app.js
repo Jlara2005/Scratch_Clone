@@ -6,6 +6,7 @@ const path = require('path');
 const bcrypt = require('bcrypt')
 const sqlite3 = require('sqlite3').verbose();
 const session = require('express-session')
+const Blockly = require('blockly')
 var fs = require('fs');
 var parser = require('scratch-parser')
 
@@ -56,6 +57,10 @@ app.get('/gamePage', (req, res) => {
 
 app.get('/loginpage', (req, res) => {
     res.render('loginpage.ejs')
+});
+
+app.get('/create',(req,res) => {
+    res.render('createGame.ejs')
 });
 
 app.get('/accountPage', function(req,res) {
