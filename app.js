@@ -76,17 +76,20 @@ app.get('/accountPage', function(req,res) {
 app.get('/aboutPage',(req,res) =>{
     res.render('aboutpage.ejs')
 })
-
+// dectect the user error
+var userError = " "
 // the two endpoint below is all play a part in creating or logging in.
 app.get('/login', function(req,res) {
     // if the user already log in than it will just send them back to the home page. soon i will add it to send to the logout page
     if (req.session.user) {
         res.render('login.ejs', {
-            login:true
+            login:true,
+            error:userError
         })
     } else {
         res.render('login.ejs', {
-            login:false
+            login:false,
+            error:userError
         })
     }
 })
@@ -106,7 +109,7 @@ app.post('/login', function(req,res) {
     // the varible below is the inputed username and password.
     let username = req.body.username
     let password = req.body.password
-
+    
     //this check if the user want to create an account or login to the account.
     if (req.body.choice == "login") {
         //this generate session data with any given data
@@ -122,22 +125,31 @@ app.post('/login', function(req,res) {
                     if (isMatch) {
                       if (error) throw error;
                       req.session.user = username;
+                      userError = ''
                       res.redirect('/');
-                    } else res.redirect('/login');
+                    } else {
+                        userError = `Password is incorrect`
+                        res.redirect('/login');}
                   })
-                } else res.redirect('/login');
+                } else {
+                    userError = `account don't exist`
+                    res.redirect('/login');}
               })
           })
 
     } else {
         // this is for when the user want to create an account
         req.session.regenerate(function (error) {
-            if (error) throw error;
+            if (error) throw error; 
             // check if the account already exist
             database.get(`SELECT * FROM Users Where username = ?`, [username], (error, results) => { 
                 if (error) throw error;
-                if (results) res.redirect('/login');
-                // hash will encypt the password 
+                if (results) 
+                {
+                    userError = `Account already exists`
+                    res.redirect('/login');
+                } else 
+                {// hash will encypt the password 
                 bcrypt.hash(password, 10, function (error, secretPassword) {
                     if (error) throw error;
                     // add the new username and password to the databased.
@@ -146,7 +158,7 @@ app.post('/login', function(req,res) {
                         req.session.user = username
                         res.redirect('/')
                     })
-                })
+                })}
             })
         })
     }
@@ -187,8 +199,9 @@ app.post('/accountPage', function(req,res) {
             // check if the account already exist
             database.get(`SELECT * FROM Users Where username = ?`, [username], (error, results) => { 
                 if (error) throw error;
-                if (results) res.redirect('/login');
-                // hash will encypt the password 
+                if (results) 
+                {res.redirect('/login')} else 
+                {// hash will encypt the password 
                 bcrypt.hash(password, 10, function (error, secretPassword) {
                     if (error) throw error;
                     // add the new username and password to the databased.
@@ -197,10 +210,11 @@ app.post('/accountPage', function(req,res) {
                         req.session.user = username
                         res.redirect('/')
                     })
-                })
+                })}
             })
         })
     }
+
 })
 
 //start http listen server
