@@ -230,7 +230,7 @@ app.get('/deleteAccount', function (request, response) {
       if (error) throw error;
       response.redirect('/logout');
     })
-  })
+  
 
 if (username = request.session.user) {
     violated = violated
@@ -242,8 +242,9 @@ if (username = request.session.user) {
 Banned = []
 
 if (Banned) {
-    res.redirect('/deleteAccount')
+    response.redirect('/deleteAccount')
 }
+})
 
 //start http listen server
 app.listen(3000, (error) => {
