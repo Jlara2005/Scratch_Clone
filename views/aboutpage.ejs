@@ -10,6 +10,40 @@
         max-width: fit-content;
         max-height: fit-content;
     }
+    @keyframes pong{
+        0%{left: 0% ;}
+        25%{left: 60% ;}
+        50%{left: 0%;}
+        75%{left: -10%;}
+        100%{left: 0.5%;}
+
+    }
+    @keyframes stretch {
+        0%{top: 0px; width: 500px; background-color: lightsteelblue;}
+        25%{top: 200px;width: 1000px;background-color: darkcyan;}
+        50%{top:400px;width: 250px;background-color: aquamarine;}
+        75%{top: 200px;width: 1000px;background-color: darkcyan;}
+        80%{transform: skew(360deg);}
+        100%{top: 0px; width: 500px; background-color: lightsteelblue;}
+    }
+    @keyframes rotate {
+        0%{top: 200px;}
+        25%{transform: rotate(180deg);top: 200px;}
+        50%{transform: rotate(270deg);top: 200px;}
+        75%{transform: rotate(360deg);top: 200px;}
+        100%{top: 0px;}
+        
+    }
+    @keyframes Undertale {
+        0%{top: 500px}
+        5%{left: 0px;top: 500px;transform: rotate(360deg);}
+        10%{top: 250px;left: -250px;}
+        15%{width: 1000px; left: 500px;top: 600px;}
+        20%{left: 0px;left: 0px;}
+        25%{transform: skewY(25deg);}
+        30%{transform: skewX(50deg);}
+        35%{transform: skew(100deg);}
+    }
     body{
         background-color:lightslategrey ;
     }
@@ -110,17 +144,21 @@
         function about(element) {
             console.log(element)
             if (element.id =='1') {
-                document.getElementById('About').innerHTML = 'This is Jacob Smith'
+                document.getElementById('About').style.animation = 'pong 4s '
+                document.getElementById('About').innerHTML = 'Jacob Smith is the founder of the scratch clone project. I make sure that every employee is working and up to par with company standards. I check over what needs to be done and document what gets done.'
             }
             if (element.id=='2') {
-                document.getElementById('About').innerHTML = 'This is Jason Lara'
+                document.getElementById('About').style.animation = 'stretch 5s'
+                document.getElementById('About').innerHTML = 'Jason Lara is the co-founder of the scratch clone project. The GitHub master making sure that every code will merge in efficiently and add additional code or comments for future use of the project. Additional checks and fixes errors that may occur in the project.'
             }
             if (element.id =='3') {
+                document.getElementById('About').style.animation = 'rotate 3s'
                 document.getElementById('About').innerHTML = 'This is Shane Winpigler'
             }
             if (element.id=='4') {
-                document.getElementById('About').style.fontFamily='wingdinks'
-                document.getElementById('About').innerHTML = 'Hello. My name is Logan. I am the first Junior who worked for this project. I did most of the HTML and CSS for the page, and a little bit of EJS along the way. '
+                document.getElementById('About').style.fontFamily='Comic Sans MS'
+                document.getElementById('About').style.animation='Undertale 15s'
+                document.getElementById('About').innerHTML = 'Hello. My name is Logan. I am the ome of first Juniors who worked for this project. I coded most of the HTML and CSS for the infomation pages and the animations on the "Creators of Scratch Clone."I also did a bt of EJS to help along the way. '
             }
             if (element.id=='5') {
                 window.history.go(-1)
