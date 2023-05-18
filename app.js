@@ -156,6 +156,7 @@ app.post('/login', function(req,res) {
                     database.get('INSERT INTO Users (username, password) VALUES (?,?)', [username,secretPassword], function(error) {
                         if (error) throw error;
                         req.session.user = username
+                        userError = ``
                         res.redirect('/')
                     })
                 })}
