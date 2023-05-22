@@ -40,6 +40,19 @@
 
     }
 
+    
+    .create {
+        max-width: 110px;
+        max-height: 500px;
+        background-color: rgb(255, 4, 180);
+        margin-top: -570px;
+        margin-left: 600px;
+        border: 4px;
+        border-style: groove;
+        border-color: aqua;
+        
+    }
+
     .notes {
         max-width: 390px;
         max-height: 600px;
@@ -70,14 +83,14 @@
 </style>
 
 <body>
-    <embed src="/Music/Elevator" loop="true" autostart="true" width="2" height="0">
+    <!--<embed src="/Music/Elevator" loop="true" autostart="true" width="2" height="0">-->
     <div class="backgroundBox">
         <div class="backgroundText">
             <h2>Account page</h2>
             <div>
-                <script>
+                <!--<script>
                     var user = <% -JSON.stringify(login) %>
-                </script>
+                </script>-->
                 <div class="usernameBox">
                     <% if(login) { %>
                         <p> <%= username %> </p>
