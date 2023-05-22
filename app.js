@@ -129,14 +129,17 @@ app.post('/login', function(req,res) {
                     if (isMatch) {
                       if (error) throw error;
                       req.session.user = username;
+                      //Clears the error message
                       userError = ''
                       res.redirect('/');
                     } else {
+                        //Displays an error if the users password is incorrect
                         userError = `Password is incorrect`
                         res.redirect('/login');}
                   })
                 } else {
-                    userError = `account don't exist`
+                    //Displays an error if the account doesn't exist
+                    userError = `Account doesn't exist`
                     res.redirect('/login');}
               })
           })
@@ -150,6 +153,7 @@ app.post('/login', function(req,res) {
                 if (error) throw error;
                 if (results) 
                 {
+                    //Displays an error if the account already exists
                     userError = `Account already exists`
                     res.redirect('/login');
                 } else 
