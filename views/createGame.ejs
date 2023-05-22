@@ -5,14 +5,106 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Game</title>
+    <script src="https://unpkg.com/blockly"></script>
+    <script src="https://unpkg.com/blockly/blockly.min.js"></script>
+    <script src="https://unpkg.com/blockly/javascript_compressed"></script>
+    <script src="https://unpkg.com/blockly/python_compressed"></script>
 </head>
 <body>
     <div id="BH">
-        <div id="blocks" style="border: 5px solid black; width: 350px; height: 1000px; float: left; "></div> 
-        <div id="worskSpace" style="border: 5px solid black; width: 1100px; height: 1000px; float: left; "></div>
+        <div id="blocks" style="border: 5px solid black; width: 350px; height: 1000px; float: left; "> <button id="start" onclick="start()">start</button> <br> <button id="start" onclick="choice = 'javascript'; updateCode()">Javascript</button> <button id="start" onclick="choice = 'python'; updateCode()">Python</button></div> 
+        <div id="worskSpace" style="border: 5px solid black; width: 1100px; height: 1000px; float: left; "> </div>
         <canvas id="canvas" style="border: 5px solid black; width: 350px; height: 500px; float: left; "></canvas>
         <div id="details" style="border: 5px solid black; width: 350px; height: 490px; float: left; "></div> 
     </div>
 </body>
 
+<script>
+  var choice = "javascript"
+
+  
+  // the toolbox contains all the blocks and the css of the section that contain the blocks
+    const toolbox = {
+      "kind": "flyoutToolbox",
+      "contents": [
+        {
+          "kind": "block",
+          "type": "controls_if"
+        },
+        {
+          "kind" : "block",
+          "type" : "logic_compare"
+        },
+        {
+          "kind": "block",
+          "type": "controls_repeat_ext"
+        },
+        {
+          "kind": "block",
+          "type": "math_number",
+          "fields": {
+            "NUM": 123
+          }
+        },
+        {
+          "kind": "block",
+          "type": "math_arithmetic"
+        },
+        {
+          "kind": "block",
+          "type": "text"
+        },
+        {
+          "kind" : "block",
+          "type" : "text_print"
+        }
+      ]
+    };
+
+    // the three below are the a example of creating your own code generator.
+    const htmlGenerator = new Blockly.Generator("HTML")
+    htmlGenerator.PRECEDENCE = 0;
+    htmlGenerator['text'] = function(block) {
+      let textValue = block.getFieldValue('TEXT');
+      let code = `"${textValue}"`
+      return [code, htmlGenerator.PRECEDENCE]
+    };
+
+    htmlGenerator['math_number'] = function(block) {
+      let textValue =String(block.getFieldValue('NUM'));
+      let code = `${textValue}`
+      
+      return [code, htmlGenerator.PRECEDENCE]
+    };
+
+    htmlGenerator['text_print'] = function(block) {
+      var value = htmlGenerator.valueToCode(
+      block, 'TEXT', htmlGenerator.PRECEDENCE);
+      value = value.replace(/"/g, '')
+  const code = `document.write("${value}")`;
+  return code;
+};
+
+
+    //workspace take the toolbox and let blocks be placed down.
+    const Workspace = Blockly.inject('worskSpace',
+        {toolbox: toolbox});
+
+        //this let the workspace display the code that is happing at the moment
+        function updateCode(event) {
+          if (choice == 'javascript') {
+            const code = htmlGenerator.workspaceToCode(Workspace);
+            document.getElementById('details').innerText = code;
+            document.getElementById('start').setAttribute('onclick', code)
+          } else {
+            const code = Blockly.Python.workspaceToCode(Workspace);
+            document.getElementById('details').innerText = code;
+            document.getElementById('start').setAttribute('onclick', code)
+          }
+
+}
+// this well let the function update everytime the workspace been updated.
+    Workspace.addChangeListener(updateCode);
+  </script>
+  
 </html>

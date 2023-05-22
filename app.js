@@ -6,8 +6,8 @@ const path = require('path');
 const bcrypt = require('bcrypt')
 const sqlite3 = require('sqlite3').verbose();
 const session = require('express-session')
+const Blockly = require('blockly')
 var fs = require('fs');
-var parser = require('scratch-parser')
 
 // the four javascript libararies below is not being used right now. in the future, it will allow users to import many files to the server/webpage.
 /*import Uppy from '@uppy/core';
@@ -17,16 +17,16 @@ import '@uppy/drag-drop/dist/style.min.css'; */
 //part 2, configure expressjs application
 
 
-
+//import the database into your code
 const database = new sqlite3.Database('./database.db', sqlite3.OPEN_READWRITE)
 
-
+//set the view engine and the bodyparser
 app.set('view engine', 'ejs');
 app.use(bodyparser.urlencoded({
     extended: true
 }))
 
-
+//use express static and make a session
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
     secret: 'D$jtDD_}g#T+vg^%}qpi~+2BCs=R!`}O',
@@ -56,6 +56,10 @@ app.get('/gamePage', (req, res) => {
 
 app.get('/loginpage', (req, res) => {
     res.render('loginpage.ejs')
+});
+
+app.get('/create',(req,res) => {
+    res.render('createGame.ejs')
 });
 
 app.get('/accountPage', function(req,res) {
@@ -156,6 +160,7 @@ app.post('/login', function(req,res) {
                     database.get('INSERT INTO Users (username, password) VALUES (?,?)', [username,secretPassword], function(error) {
                         if (error) throw error;
                         req.session.user = username
+                        userError = ``
                         res.redirect('/')
                     })
                 })}
@@ -164,7 +169,7 @@ app.post('/login', function(req,res) {
     }
 
 })
-
+//set up the account page endpoint to allow it to get information
 app.post('/accountPage', function(req,res) {
     // the varible below is the inputed username and password.
     let username = req.body.username
@@ -217,11 +222,35 @@ app.post('/accountPage', function(req,res) {
 
 })
 
+app.get('/deleteAccount', function (request, response) {
+    console.log(1);
+    username = request.session.user;
+    database.get('DELETE FROM users WHERE username = ?', [username], (error, results) => {
+      console.log(2);
+      if (error) throw error;
+      response.redirect('/logout');
+    })
+  
+
+if (username = request.session.user) {
+    violated = violated
+    if (username = violated) {
+        Banned.push(username)
+    }
+}
+
+Banned = []
+
+if (Banned) {
+    response.redirect('/deleteAccount')
+}
+})
+
 //start http listen server
-app.listen(300, (error) => {
+app.listen(3000, (error) => {
     if (error) {
         console.log(error);
     } else {
-        console.log('listening on server port 300');
+        console.log('listening on server port 3000');
     }
 });
